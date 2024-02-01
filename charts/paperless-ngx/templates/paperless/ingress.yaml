@@ -1,0 +1,45 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: {{ include "paperless.ingress.apiVersion" . }}
+kind: Ingress
+metadata:
+  name: {{ template "paperless.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "paperless.name" . }}
+    helm.sh/chart: {{ include "paperless.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/component: app
+{{- if .Values.ingress.labels }}
+{{ toYaml .Values.ingress.labels | indent 4 }}
+{{- end }}
+{{- if .Values.ingress.annotations }}
+  annotations:
+{{ toYaml .Values.ingress.annotations | indent 4 }}
+{{- end }}
+spec:
+  {{- if .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className }}
+  {{- end }}
+  rules:
+  - host: {{ .Values.paperless.host }}
+    http:
+      paths:
+      - path: {{ .Values.ingress.path }}
+        {{- if eq (include "paperless.ingress.apiVersion" $) "networking.k8s.io/v1" }}
+        pathType: {{ .Values.ingress.pathType }}
+        {{- end }}
+        backend:
+          {{- if eq (include "paperless.ingress.apiVersion" $) "networking.k8s.io/v1" }}
+          service:
+            name: {{ template "paperless.fullname" . }}
+            port:
+              number: {{ .Values.paperless.service.port }}
+          {{- else }}
+          serviceName: {{ template "paperless.fullname" . }}
+          servicePort: {{ .Values.paperless.service.port }}
+          {{- end }}
+{{- if .Values.ingress.tls }}
+  tls:
+{{ toYaml .Values.ingress.tls | indent 4 }}
+{{- end -}}
+{{- end }}

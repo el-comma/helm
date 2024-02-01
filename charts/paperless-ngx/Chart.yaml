@@ -1,0 +1,31 @@
+apiVersion: v2
+name: paperless
+version: 1.0.0-alpha.1
+appVersion: 2.4.2
+description: A file sharing server that puts the control and security of your own data back into your hands.
+keywords:
+  - paperless
+  - office
+  - http
+  - web
+  - php
+home: https://docs.paperless-ngx.com/
+icon: https://docs.paperless-ngx.com/assets/logo.svg
+sources:
+  - https://github.com/paperless-ngx/paperless-ngx
+maintainers:
+  - name: el-comma
+    email: el-com@web.de
+dependencies:
+  - name: postgresql
+    version: 12.12.*
+    repository: oci://registry-1.docker.io/bitnamicharts
+    condition: postgresql.enabled
+  - name: mariadb
+    version: 12.2.*
+    repository: oci://registry-1.docker.io/bitnamicharts
+    condition: mariadb.enabled
+  - name: redis
+    version: 17.13.*
+    repository: oci://registry-1.docker.io/bitnamicharts
+    condition: redis.enabled
