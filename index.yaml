@@ -37,4 +37,41 @@ entries:
     urls:
     - https://github.com/el-comma/helm/releases/download/paperless-1.0.0-alpha.2/paperless-1.0.0-alpha.2.tgz
     version: 1.0.0-alpha.2
-generated: "2024-02-01T13:46:24.210211578Z"
+  paperless-ngx:
+  - apiVersion: v2
+    appVersion: 2.4.2
+    created: "2024-02-01T13:48:38.862586999Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 12.12.*
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 12.2.*
+    - condition: redis.enabled
+      name: redis
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 17.13.*
+    description: A file sharing server that puts the control and security of your
+      own data back into your hands.
+    digest: 2a5367c1d89f3760eee8e71016403a531643b732fb69375b6f5aba90172a153c
+    home: https://docs.paperless-ngx.com/
+    icon: https://docs.paperless-ngx.com/assets/logo.svg
+    keywords:
+    - paperless
+    - office
+    - http
+    - web
+    - php
+    maintainers:
+    - email: el-com@web.de
+      name: el-comma
+    name: paperless-ngx
+    sources:
+    - https://github.com/paperless-ngx/paperless-ngx
+    urls:
+    - https://github.com/el-comma/helm/releases/download/paperless-ngx-1.0.0-alpha.1/paperless-ngx-1.0.0-alpha.1.tgz
+    version: 1.0.0-alpha.1
+generated: "2024-02-01T13:48:38.862596807Z"
