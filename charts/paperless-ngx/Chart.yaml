@@ -1,7 +1,7 @@
 apiVersion: v2
 name: paperless-ngx
-version: 1.0.0-alpha.2
-appVersion: 2.4.3
+version: 1.0.0-alpha.3
+appVersion: 2.5.2
 description: A file sharing server that puts the control and security of your own data back into your hands.
 keywords:
   - paperless
